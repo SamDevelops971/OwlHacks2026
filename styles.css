@@ -65,10 +65,11 @@
   text-align: center;
 }
 
-#loginButton {
-  font-size: 17px;
+#TULogin {
+  font-size: 16px;
   border: solid var(--cherry-soft) 2px;
   border-radius: 4px;
+  font-family:'Fraunces',serif;
 }
 
 
