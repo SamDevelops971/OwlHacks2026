@@ -10,10 +10,8 @@
   --cherry-dark: #6E1524;
   --cherry-light: #C93B52;
   --cherry-soft: #F4E0E3;
-  --gradient: linear-gradient(135deg, var(--cherry-light) 0%, var(--cherry) 55%, var(--cherry-dark) 100%);
   --down: #5B584F;
 }
-/*Hi*/
 
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
@@ -43,10 +41,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   letter-spacing:-0.01em;
 }
 .brand span{
-  background:var(--gradient);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+  color:var(--cherry);
 }
 .search{
   flex:1;
@@ -390,18 +385,65 @@ select{
 .club-mini-list li a:hover{color:var(--cherry);}
 
 /* ---- Club page ---- */
-.club-header{
+.club-header-card{
   background:var(--panel);border:1px solid var(--border);border-radius:10px;
-  padding:22px;margin-bottom:20px;display:flex;gap:18px;align-items:center;
+  overflow:hidden;margin-bottom:20px;
 }
 .club-banner{
-  width:64px;height:64px;border-radius:12px;flex-shrink:0;
-  background:var(--gradient);
+  height:110px;background:var(--cherry);position:relative;
 }
+.banner-edit{
+  position:absolute;top:12px;right:14px;
+  background:rgba(0,0,0,0.35);color:#fff;
+  font-size:12px;font-weight:600;padding:6px 12px;border-radius:6px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+}
+.banner-edit:hover{background:rgba(0,0,0,0.5);}
+.club-header-body{
+  display:flex;gap:16px;align-items:flex-end;
+  padding:0 22px 20px 22px;
+}
+.club-header-body .avatar-wrap{margin-top:-32px;}
+.avatar-xl{width:64px;height:64px;font-size:19px;border:3px solid var(--panel);}
+.club-header-info{flex:1;padding-top:14px;}
 .club-title{font-family:'Fraunces',serif;font-size:24px;font-weight:700;}
 .club-sub{font-size:13.5px;color:var(--ink-soft);margin:4px 0 10px 0;}
 .club-stats{display:flex;gap:18px;font-size:13px;color:var(--ink-soft);}
 .club-stats strong{color:var(--ink);}
-.club-header .btn{margin-left:auto;align-self:center;}
+.club-header-body .btn{margin-left:auto;}
 .member-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13.5px;}
 .member-row:last-child{border-bottom:none;}
+
+/* ---- Profile picture upload ---- */
+.avatar-wrap{position:relative;display:inline-block;flex-shrink:0;}
+.avatar-wrap input[type="file"]{display:none;}
+.avatar-edit{
+  position:absolute;bottom:-2px;right:-2px;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--cherry);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;cursor:pointer;border:2px solid var(--panel);
+}
+.avatar-edit:hover{background:var(--cherry-dark);}
+
+/* ---- File-picker styled buttons (photo/image attach) ---- */
+.file-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--border);border-radius:6px;
+  padding:7px 12px;font-size:13px;color:var(--ink-soft);
+  cursor:pointer;background:#fff;
+}
+.file-btn:hover{color:var(--cherry);border-color:var(--cherry);}
+.file-btn input[type="file"]{display:none;}
+.compose-media-row{margin-bottom:10px;}
+
+/* ---- Post image ---- */
+.wb-post-image{
+  width:100%;height:150px;border-radius:8px;margin-bottom:12px;
+  background:var(--cherry-soft);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cherry);font-size:13px;font-weight:600;
+}
+
+/* ---- Filter confirm button ---- */
+.btn-small{padding:6px 16px;font-size:12.5px;}

@@ -9,11 +9,10 @@
 <body>
 
 <div class="topbar">
-  <a href="index.html" class="brand">TuFl<span>ock</span></a>
+  <a href="index.html" class="brand">TU<span>Flock</span></a>
   <input class="search" type="text" placeholder="Search TuFlock">
   <div class="topbar-actions">
-    <button class="btn btn-ghost">Log in</button>
-    <button class="btn btn-primary">Sign up</button>
+    <button class="btn btn-primary">Log in</button>
   </div>
 </div>
 
@@ -32,14 +31,25 @@
   <main>
     <a href="index.html" class="back-link">&larr; Back to Home</a>
 
-    <div class="club-header">
-      <div class="club-banner"></div>
-      <div>
-        <div class="club-title">Robotics Club</div>
-        <div class="club-sub">Building competition bots and teaching soldering, CAD, and control systems since 2014.</div>
-        <div class="club-stats"><span><strong>412</strong> members</span><span><strong>6</strong> officers</span></div>
+    <div class="club-header-card">
+      <div class="club-banner">
+        <label class="banner-edit" for="club-banner-upload">&#128247; Edit Banner</label>
+        <input type="file" id="club-banner-upload" accept="image/*" hidden>
       </div>
-      <button class="btn btn-primary">Join Club</button>
+      <div class="club-header-body">
+        <div class="avatar-wrap">
+          <!-- this club picture is what appears as the wb-post-pic on every post made under this club -->
+          <div class="avatar-lg avatar-xl">RC</div>
+          <label class="avatar-edit" for="club-pic-upload" title="Change club picture">&#128247;</label>
+          <input type="file" id="club-pic-upload" accept="image/*" hidden>
+        </div>
+        <div class="club-header-info">
+          <div class="club-title">Robotics Club</div>
+          <div class="club-sub">Building competition bots and teaching soldering, CAD, and control systems since 2014.</div>
+          <div class="club-stats"><span><strong>412</strong> members</span><span><strong>6</strong> officers</span></div>
+        </div>
+        <button class="btn btn-primary">Join Club</button>
+      </div>
     </div>
 
     <div class="compose-box">
@@ -50,6 +60,9 @@
         </select>
       </div>
       <textarea placeholder="Share an announcement, event, or update from Robotics Club..."></textarea>
+      <div class="compose-media-row">
+        <label class="file-btn">&#128247; Add Photo<input type="file" accept="image/*"></label>
+      </div>
       <div class="compose-footer">
         <select class="type-select">
           <option>Type: Event</option>
@@ -60,6 +73,7 @@
       </div>
     </div>
 
+    <!-- wb-post-pic below mirrors the club's profile picture set above -->
     <div class="wb-post">
       <div class="wb-post-head">
         <div class="wb-post-pic">RC</div>
@@ -67,8 +81,9 @@
         <div class="wb-post-hashtag">#DSC</div>
       </div>
       <div class="wb-post-tags">
-        <span class="chip">Computer Science</span><span class="chip chip-outline">Event</span>
+        <span class="chip">Robotics</span><span class="chip chip-outline">Event</span>
       </div>
+      <div class="wb-post-image">&#128247; workshop-flyer.jpg</div>
       <div class="wb-post-content">Workshop this Friday: soldering basics for the spring competition build. Bring your own kit or borrow one at the door.</div>
       <div class="wb-post-actions">
         <span>&#9829; Like</span><span>&#9785; Dislike</span><span>&#128172; Comment</span>
@@ -86,7 +101,7 @@
         <div class="wb-post-hashtag">#DSC</div>
       </div>
       <div class="wb-post-tags">
-        <span class="chip">Computer Science</span><span class="chip chip-outline">Workshop</span>
+        <span class="chip">Robotics</span><span class="chip chip-outline">Workshop</span>
       </div>
       <div class="wb-post-content">New CAD tutorial series starts next week — five sessions covering everything from sketch constraints to full assemblies.</div>
       <div class="wb-post-actions">
@@ -115,4 +130,3 @@
 
 </body>
 </html>
-

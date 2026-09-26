@@ -7,14 +7,12 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  
 
 <div class="topbar">
-  <div class="brand">TuFl<span>ock</span></div>
+  <div class="brand">TU<span>Flock</span></div>
   <input class="search" type="text" placeholder="Search TuFlock">
   <div class="topbar-actions">
-    <button class="btn btn-ghost">Log in</button>
-    <button class="btn btn-primary">Sign up</button>
+    <button class="btn btn-primary">Log in</button>
   </div>
 </div>
 
@@ -24,7 +22,11 @@
   <aside class="rail-left">
     <div class="card profile-card">
       <div class="profile-top">
-        <div class="avatar-lg">JE</div>
+        <div class="avatar-wrap">
+          <div class="avatar-lg">JE</div>
+          <label class="avatar-edit" for="profile-photo-upload" title="Change profile picture">&#128247;</label>
+          <input type="file" id="profile-photo-upload" accept="image/*">
+        </div>
         <div>
           <div class="profile-name">Jordan Ellis</div>
           <span class="badge badge-student">Student</span>
@@ -67,6 +69,9 @@
         </select>
       </div>
       <textarea placeholder="Share an announcement, event, or update..."></textarea>
+      <div class="compose-media-row">
+        <label class="file-btn">&#128247; Add Photo<input type="file" accept="image/*"></label>
+      </div>
       <div class="compose-footer">
         <select class="type-select">
           <option>Type: Event</option>
@@ -84,14 +89,22 @@
     <div class="tab-labels">
       <label for="tab-posts" class="tab-label">Posts</label>
       <label for="tab-research" class="tab-label">Research</label>
-      <label for="tab-prof" class="tab-label">Prof.</label>
+      <label for="tab-prof" class="tab-label">Professors</label>
     </div>
 
     <!-- POSTS TAB -->
     <div class="tab-panel" id="panel-posts">
       <div class="tag-filter-row">
-        <select><option>Major: All</option><option>Computer Science</option><option>Biology</option><option>Psychology</option><option>Business</option></select>
+        <select>
+          <option>Major: All</option>
+          <option>Computer Science</option>
+          <option>Data Science</option>
+          <option>Cyber Security</option>
+          <option>Robotics</option>
+          <option>Mathematics</option>
+        </select>
         <select><option>Type: All</option><option>Event</option><option>Workshop</option><option>Research</option></select>
+        <button class="btn btn-primary btn-small">Confirm</button>
       </div>
 
       <div class="wb-post">
@@ -101,8 +114,9 @@
           <div class="wb-post-hashtag">#DSC</div>
         </div>
         <div class="wb-post-tags">
-          <span class="chip">Computer Science</span><span class="chip chip-outline">Event</span>
+          <span class="chip">Robotics</span><span class="chip chip-outline">Event</span>
         </div>
+        <div class="wb-post-image">&#128247; workshop-flyer.jpg</div>
         <div class="wb-post-content">Workshop this Friday: soldering basics for the spring competition build. Bring your own kit or borrow one at the door.</div>
         <div class="wb-post-actions">
           <span>&#9829; Like</span><span>&#9785; Dislike</span><span>&#128172; Comment</span>
@@ -120,7 +134,7 @@
           <div class="wb-post-hashtag">#DataSci</div>
         </div>
         <div class="wb-post-tags">
-          <span class="chip">Computer Science</span><span class="chip chip-outline">Workshop</span>
+          <span class="chip">Data Science</span><span class="chip chip-outline">Workshop</span>
         </div>
         <div class="wb-post-content">Intro to pandas session next Tuesday, 6pm in Wachman 413. No experience needed, laptops provided for the first 20 to sign up.</div>
         <div class="wb-post-actions">
@@ -135,8 +149,16 @@
     <!-- RESEARCH TAB -->
     <div class="tab-panel" id="panel-research">
       <div class="tag-filter-row">
-        <select><option>Major: All</option><option>Computer Science</option><option>Biology</option><option>Psychology</option></select>
-        <select><option>Level: All</option><option>Undergrad</option><option>Grad</option></select>
+        <select>
+          <option>Major: All</option>
+          <option>Computer Science</option>
+          <option>Data Science</option>
+          <option>Cyber Security</option>
+          <option>Robotics</option>
+          <option>Mathematics</option>
+        </select>
+        <select><option>Level: All</option><option>Undergraduate</option><option>Graduate</option></select>
+        <button class="btn btn-primary btn-small">Confirm</button>
       </div>
 
       <div class="wb-post">
@@ -146,9 +168,9 @@
           <div class="wb-post-hashtag">#Research</div>
         </div>
         <div class="wb-post-tags">
-          <span class="chip">Biology</span><span class="chip chip-outline">Grad</span>
+          <span class="chip">Robotics</span><span class="chip chip-outline">Graduate</span>
         </div>
-        <div class="wb-post-content">Recruiting one grad research assistant for a spring semester project on coral microbiomes. Apply through the department portal.</div>
+        <div class="wb-post-content">Recruiting one graduate research assistant for a spring semester project on swarm-coordination algorithms. Apply through the department portal.</div>
         <div class="wb-post-actions">
           <span>&#9829; Like</span><span>&#9785; Dislike</span><span>&#128172; Comment</span>
         </div>
@@ -159,14 +181,14 @@
 
       <div class="wb-post">
         <div class="wb-post-head">
-          <div class="wb-post-pic">PS</div>
-          <div class="wb-post-clubname">Psych Cognition Lab</div>
+          <div class="wb-post-pic">CS</div>
+          <div class="wb-post-clubname">Cyber Security Research Group</div>
           <div class="wb-post-hashtag">#Research</div>
         </div>
         <div class="wb-post-tags">
-          <span class="chip">Psychology</span><span class="chip chip-outline">Undergrad</span>
+          <span class="chip">Cyber Security</span><span class="chip chip-outline">Undergraduate</span>
         </div>
-        <div class="wb-post-content">Looking for two undergrad volunteers to help run memory-task sessions this fall. Great for anyone applying to grad programs.</div>
+        <div class="wb-post-content">Looking for two undergraduate volunteers to help run our capture-the-flag training sessions this fall. Great for anyone applying to grad programs.</div>
         <div class="wb-post-actions">
           <span>&#9829; Like</span><span>&#9785; Dislike</span><span>&#128172; Comment</span>
         </div>
@@ -179,8 +201,16 @@
     <!-- PROF TAB -->
     <div class="tab-panel" id="panel-prof">
       <div class="tag-filter-row">
-        <select><option>Major: All</option><option>Computer Science</option><option>Biology</option><option>Psychology</option></select>
+        <select>
+          <option>Major: All</option>
+          <option>Computer Science</option>
+          <option>Data Science</option>
+          <option>Cyber Security</option>
+          <option>Robotics</option>
+          <option>Mathematics</option>
+        </select>
         <select><option>Research: Any</option><option>Has active research</option><option>No active research</option></select>
+        <button class="btn btn-primary btn-small">Confirm</button>
       </div>
 
       <div class="card" style="padding:6px 16px;">
@@ -188,7 +218,7 @@
           <div class="avatar-lg">EM</div>
           <div>
             <div class="prof-name">Dr. Elena Marsh</div>
-            <div class="prof-major">Teaches: Biology</div>
+            <div class="prof-major">Teaches: Robotics</div>
             <span class="chip">Has active research</span>
           </div>
         </div>
@@ -204,7 +234,15 @@
           <div class="avatar-lg">SL</div>
           <div>
             <div class="prof-name">Dr. Sofia Lin</div>
-            <div class="prof-major">Teaches: Psychology</div>
+            <div class="prof-major">Teaches: Data Science</div>
+            <span class="chip">Has active research</span>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="avatar-lg">AC</div>
+          <div>
+            <div class="prof-name">Dr. Amara Chen</div>
+            <div class="prof-major">Teaches: Cyber Security</div>
             <span class="chip">Has active research</span>
           </div>
         </div>
@@ -230,6 +268,7 @@
           <option>Data Science Club</option>
         </select>
       </div>
+      <button class="btn btn-primary" style="width:100%;">Confirm</button>
     </div>
 
     <div class="card">
