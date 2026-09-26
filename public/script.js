@@ -3,7 +3,7 @@ const close = document.querySelector("#close-button")
 const popup = document.querySelector("#loginPopup")
 
 
-//Logic to close and open login popup
+//Logic to close and open the login popup
 openLogin.addEventListener("click", () => {
 popup.classList.remove("hidden");
 });

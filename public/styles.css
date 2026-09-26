@@ -30,7 +30,7 @@ z-index: 1000;
 
 .hidden {
   display: none;
-  /*to hide login popup*/
+  /*to hide the login popup*/
 }
 
 .popupContainer {
