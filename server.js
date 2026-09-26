@@ -96,51 +96,6 @@ app.post('/api/clubs', requireAuth, async (req, res) => {
   }
 });
 
-// ---------- Posts ----------
-// GET /api/posts?club_id=1&sort=top|new
-app.get('/api/posts', async (req, res) => {
-  const { club_id, sort } = req.query;
-  const order = sort === 'top' ? 'score DESC, p.created_at DESC' : 'p.created_at DESC';
-
-  let sql = `
-    SELECT p.id, p.title, p.body, p.created_at, p.club_id,
-           c.name AS club_name,
-           u.username AS author,
-           COALESCE(SUM(v.value), 0)::int AS score,
-           (SELECT COUNT(*)::int FROM comments cm WHERE cm.post_id = p.id) AS comment_count
-    FROM posts p
-    JOIN clubs c ON c.id = p.club_id
-    JOIN users u ON u.id = p.author_id
-    LEFT JOIN votes v ON v.post_id = p.id
-  `;
-  const params = [];
-  if (club_id) {
-    params.push(club_id);
-    sql += ` WHERE p.club_id = $${params.length} `;
-  }
-  sql += ` GROUP BY p.id, c.name, u.username ORDER BY ${order}`;
-
-  const { rows } = await pool.query(sql, params);
-  res.json(rows);
-});
-
-app.get('/api/posts/:id', async (req, res) => {
-  const { rows } = await pool.query(
-    `SELECT p.id, p.title, p.body, p.created_at, p.club_id,
-            c.name AS club_name, u.username AS author,
-            COALESCE(SUM(v.value), 0)::int AS score
-     FROM posts p
-     JOIN clubs c ON c.id = p.club_id
-     JOIN users u ON u.id = p.author_id
-     LEFT JOIN votes v ON v.post_id = p.id
-     WHERE p.id = $1
-     GROUP BY p.id, c.name, u.username`,
-    [req.params.id]
-  );
-  if (!rows[0]) return res.status(404).json({ error: 'Not found' });
-  res.json(rows[0]);
-});
-
 app.post('/api/posts', requireAuth, async (req, res) => {
   const { title, body, club_id } = req.body;
   if (!title || !club_id) return res.status(400).json({ error: 'Title and club required' });
@@ -175,18 +130,6 @@ app.post('/api/posts/:id/vote', requireAuth, async (req, res) => {
   res.json({ score: rows[0].score });
 });
 
-// ---------- Comments ----------
-app.get('/api/posts/:id/comments', async (req, res) => {
-  const { rows } = await pool.query(
-    `SELECT cm.id, cm.body, cm.created_at, u.username AS author
-     FROM comments cm
-     JOIN users u ON u.id = cm.author_id
-     WHERE cm.post_id = $1
-     ORDER BY cm.created_at ASC`,
-    [req.params.id]
-  );
-  res.json(rows);
-});
 
 app.post('/api/posts/:id/comments', requireAuth, async (req, res) => {
   const { body } = req.body;
@@ -241,20 +184,6 @@ app.get('/api/comments/:id/likers', async (req, res) => {
   res.json(rows);
 });
 
-app.get('/api/posts/:id/comments', async (req, res) => {
-  const { rows } = await pool.query(
-    `SELECT cm.id, cm.body, cm.created_at, u.username AS author,
-            COALESCE(SUM(cv.value), 0)::int AS score
-     FROM comments cm
-     JOIN users u ON u.id = cm.author_id
-     LEFT JOIN comment_votes cv ON cv.comment_id = cm.id
-     WHERE cm.post_id = $1
-     GROUP BY cm.id, u.username
-     ORDER BY cm.created_at ASC`,
-    [req.params.id]
-  );
-  res.json(rows);
-});
 
 app.get('/api/posts', async (req, res) => {
   const { club_id, sort } = req.query;
