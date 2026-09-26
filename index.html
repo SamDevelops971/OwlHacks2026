@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+ 
 <div class="topbar">
   <div class="brand">TU<span>Flock</span></div>
   <input class="search" type="text" placeholder="Search TuFlock">
@@ -15,9 +15,9 @@
     <button class="btn btn-primary">Log in</button>
   </div>
 </div>
-
+ 
 <div class="layout">
-
+ 
   <!-- LEFT RAIL: profile + following -->
   <aside class="rail-left">
     <div class="card profile-card">
@@ -41,7 +41,7 @@
         </ul>
       </div>
     </div>
-
+ 
     <div class="rail-section-title">Following</div>
     <div class="rail-section-sub">as a normal member</div>
     <div class="card" style="padding:8px 12px;">
@@ -55,10 +55,10 @@
       </ul>
     </div>
   </aside>
-
+ 
   <!-- CENTER: compose + tabs + feed -->
   <main>
-
+ 
     <div class="compose-box">
       <div class="compose-visibility">&#128065; Visible to Faculty &amp; Club Faculty only</div>
       <div class="compose-row">
@@ -81,17 +81,17 @@
         <button class="btn btn-primary">Post</button>
       </div>
     </div>
-
+ 
     <input type="radio" name="hometabs" id="tab-posts" class="tab-input" checked>
     <input type="radio" name="hometabs" id="tab-research" class="tab-input">
     <input type="radio" name="hometabs" id="tab-prof" class="tab-input">
-
+ 
     <div class="tab-labels">
       <label for="tab-posts" class="tab-label">Posts</label>
       <label for="tab-research" class="tab-label">Research</label>
       <label for="tab-prof" class="tab-label">Professors</label>
     </div>
-
+ 
     <!-- POSTS TAB -->
     <div class="tab-panel" id="panel-posts">
       <div class="tag-filter-row">
@@ -106,7 +106,7 @@
         <select><option>Type: All</option><option>Event</option><option>Workshop</option><option>Research</option></select>
         <button class="btn btn-primary btn-small">Confirm</button>
       </div>
-
+ 
       <div class="wb-post">
         <div class="wb-post-head">
           <div class="wb-post-pic">RC</div>
@@ -126,7 +126,7 @@
         </div>
         <div class="wb-comment-note">Comments notify the poster by email · replies are a single, isolated reply (no nested threads)</div>
       </div>
-
+ 
       <div class="wb-post">
         <div class="wb-post-head">
           <div class="wb-post-pic">DS</div>
@@ -145,7 +145,7 @@
         </div>
       </div>
     </div>
-
+ 
     <!-- RESEARCH TAB -->
     <div class="tab-panel" id="panel-research">
       <div class="tag-filter-row">
@@ -160,7 +160,7 @@
         <select><option>Level: All</option><option>Undergraduate</option><option>Graduate</option></select>
         <button class="btn btn-primary btn-small">Confirm</button>
       </div>
-
+ 
       <div class="wb-post">
         <div class="wb-post-head">
           <div class="wb-post-pic">EM</div>
@@ -178,7 +178,7 @@
           <input type="text" placeholder="Add a comment...">
         </div>
       </div>
-
+ 
       <div class="wb-post">
         <div class="wb-post-head">
           <div class="wb-post-pic">CS</div>
@@ -197,7 +197,7 @@
         </div>
       </div>
     </div>
-
+ 
     <!-- PROF TAB -->
     <div class="tab-panel" id="panel-prof">
       <div class="tag-filter-row">
@@ -212,45 +212,113 @@
         <select><option>Research: Any</option><option>Has active research</option><option>No active research</option></select>
         <button class="btn btn-primary btn-small">Confirm</button>
       </div>
-
+ 
       <div class="card" style="padding:6px 16px;">
         <div class="prof-card">
-          <div class="avatar-lg">EM</div>
-          <div>
-            <div class="prof-name">Dr. Elena Marsh</div>
-            <div class="prof-major">Teaches: Robotics</div>
+          <div class="avatar-lg">AR</div>
+          <div class="prof-info">
+            <div class="prof-name">Andrew Rosen</div>
+            <div class="prof-title">Associate Professor of Instruction</div>
+            <div class="prof-faculty">College of Science and Technology: Computer and Information Sciences</div>
+            <div class="prof-email"><a href="mailto:andrew.rosen@temple.edu">andrew.rosen@temple.edu</a></div>
             <span class="chip">Has active research</span>
           </div>
         </div>
         <div class="prof-card">
-          <div class="avatar-lg">RK</div>
-          <div>
-            <div class="prof-name">Dr. Raj Kapoor</div>
-            <div class="prof-major">Teaches: Computer Science</div>
+          <div class="avatar-lg">CA</div>
+          <div class="prof-info">
+            <div class="prof-name">Charles Abramovic</div>
+            <div class="prof-title">Professor</div>
+            <div class="prof-faculty">Boyer College of Music and Dance: Instrumental Studies</div>
+            <div class="prof-email"><a href="mailto:charles.abramovic@temple.edu">charles.abramovic@temple.edu</a></div>
+            <span class="chip">Has active research</span>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="avatar-lg">DF</div>
+          <div class="prof-info">
+            <div class="prof-name">Derek Fisher</div>
+            <div class="prof-title">Associate Professor of Instruction</div>
+            <div class="prof-faculty">College of Science and Technology: Computer and Information Sciences</div>
+            <div class="prof-email"><a href="mailto:derek.fisher@temple.edu">derek.fisher@temple.edu</a></div>
+            <span class="chip">Has active research</span>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="avatar-lg">WY</div>
+          <div class="prof-info">
+            <div class="prof-name">Wei-Shih Yang</div>
+            <div class="prof-title">Professor</div>
+            <div class="prof-faculty">College of Science and Technology: Mathematics</div>
+            <div class="prof-email"><a href="mailto:wei-shih.yang@temple.edu">wei-shih.yang@temple.edu</a></div>
             <span class="chip chip-outline">No active research</span>
           </div>
         </div>
         <div class="prof-card">
-          <div class="avatar-lg">SL</div>
-          <div>
-            <div class="prof-name">Dr. Sofia Lin</div>
-            <div class="prof-major">Teaches: Data Science</div>
+          <div class="avatar-lg">XG</div>
+          <div class="prof-info">
+            <div class="prof-name">Xavier Grana-Amat</div>
+            <div class="prof-title">Professor</div>
+            <div class="prof-faculty">Lewis Katz School of Medicine: Fels Cancer Institute for Personalized Medicine</div>
+            <div class="prof-email"><a href="mailto:xgrana@temple.edu">xgrana@temple.edu</a></div>
+            <span class="chip chip-outline">No active research</span>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="avatar-lg">WS</div>
+          <div class="prof-info">
+            <div class="prof-name">Wanisha Smith</div>
+            <div class="prof-title">Associate Head Women's Basketball Coach</div>
+            <div class="prof-faculty">Intercollegiate Athletics: Women's Basketball</div>
+            <div class="prof-email"><a href="mailto:wanisha.smith@temple.edu">wanisha.smith@temple.edu</a></div>
+            <span class="chip chip-outline">No active research</span>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="avatar-lg">HD</div>
+          <div class="prof-info">
+            <div class="prof-name">Heath Davis</div>
+            <div class="prof-title">Professor and Chair</div>
+            <div class="prof-faculty">College of Liberal Arts: Political Science</div>
+            <div class="prof-email"><a href="mailto:heath.davis@temple.edu">heath.davis@temple.edu</a></div>
             <span class="chip">Has active research</span>
           </div>
         </div>
         <div class="prof-card">
-          <div class="avatar-lg">AC</div>
-          <div>
-            <div class="prof-name">Dr. Amara Chen</div>
-            <div class="prof-major">Teaches: Cyber Security</div>
+          <div class="avatar-lg">KH</div>
+          <div class="prof-info">
+            <div class="prof-name">Katrin Heineman</div>
+            <div class="prof-title">Professor</div>
+            <div class="prof-faculty">School of Podiatric Medicine: Podiatric Surgery</div>
+            <div class="prof-email"><a href="mailto:katrin.heineman@temple.edu">katrin.heineman@temple.edu</a></div>
+            <span class="chip chip-outline">No active research</span>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="avatar-lg">ML</div>
+          <div class="prof-info">
+            <div class="prof-name">Maria Lorenz</div>
+            <div class="prof-title">Professor of Instruction</div>
+            <div class="prof-faculty">College of Science and Technology: Mathematics</div>
+            <div class="prof-email"><a href="mailto:maria.lorenz@temple.edu">maria.lorenz@temple.edu</a></div>
+            <span class="chip">Has active research</span>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="avatar-lg">JF</div>
+          <div class="prof-info">
+            <div class="prof-name">John Fiore</div>
+            <div class="prof-title">Associate Professor of Instruction and Vice Chair</div>
+            <div class="prof-faculty">College of Science and Technology: Computer and Information Sciences</div>
+            <div class="prof-email"><a href="mailto:jfiore@temple.edu">jfiore@temple.edu</a></div>
             <span class="chip">Has active research</span>
           </div>
         </div>
       </div>
     </div>
-
+ 
   </main>
-
+ 
   <!-- RIGHT RAIL: filter + club browse -->
   <aside class="rail-right">
     <div class="card">
@@ -270,7 +338,7 @@
       </div>
       <button class="btn btn-primary" style="width:100%;">Confirm</button>
     </div>
-
+ 
     <div class="card">
       <h2>Browse Clubs</h2>
       <ul class="club-mini-list">
@@ -281,8 +349,9 @@
       </ul>
     </div>
   </aside>
-
+ 
 </div>
-<script src = "api.js"></script>
+ 
 </body>
 </html>
+ 
