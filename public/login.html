@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in — Campus Clubs</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="/" class="brand">🎓 Campus Clubs</a>
+  </header>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Log In</button>
+        <button class="auth-tab" data-tab="signup">Sign Up</button>
+      </div>
+
+      <form id="loginForm" class="auth-form">
+        <label>University Email</label>
+        <input id="loginEmail" type="email" required placeholder="you@university.edu" />
+        <label>Password</label>
+        <input id="loginPassword" type="password" required />
+        <p id="loginError" class="error hidden"></p>
+        <button type="submit" class="btn-primary full">Log In</button>
+        <p class="hint">Demo account: alice@university.edu / password123</p>
+      </form>
+
+      <form id="signupForm" class="auth-form hidden">
+        <label>Username</label>
+        <input id="signupUsername" type="text" required />
+        <label>University Email</label>
+        <input id="signupEmail" type="email" required placeholder="you@university.edu" />
+        <label>Password</label>
+        <input id="signupPassword" type="password" required minlength="6" />
+        <p id="signupError" class="error hidden"></p>
+        <button type="submit" class="btn-primary full">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    const tabs = document.querySelectorAll('.auth-tab');
+    const forms = { login: document.getElementById('loginForm'), signup: document.getElementById('signupForm') };
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+        Object.values(forms).forEach((f) => f.classList.add('hidden'));
+        forms[tab.dataset.tab].classList.remove('hidden');
+      });
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const errEl = document.getElementById('loginError');
+      try {
+        await apiLogin(email, password);
+        window.location.href = '/';
+      } catch (err) {
+        errEl.textContent = err.message;
+        errEl.classList.remove('hidden');
+      }
+    });
+
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('signupUsername').value;
+      const email = document.getElementById('signupEmail').value;
+      const password = document.getElementById('signupPassword').value;
+      const errEl = document.getElementById('signupError');
+      try {
+        await apiSignup(username, email, password);
+        window.location.href = '/';
+      } catch (err) {
+        errEl.textContent = err.message;
+        errEl.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

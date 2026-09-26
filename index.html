@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quad</title>
+<title>TuFlock</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  
 
 <div class="topbar">
-  <div class="brand">Qu<span>ad</span></div>
-  <input class="search" type="text" placeholder="Search Quad">
+  <div class="brand">TuFl<span>ock</span></div>
+  <input class="search" type="text" placeholder="Search TuFlock">
   <div class="topbar-actions">
     <button class="login">Log in</button>
     <button class="signup">Sign up</button>
@@ -19,121 +20,226 @@
 
 <div class="layout">
 
+  <!-- LEFT RAIL: profile + following -->
   <aside class="rail-left">
-    <div class="rail-title">Your communities</div>
-    <ul class="community-list">
-      <li><a href="#" class="active">Home <span class="count"></span></a></li>
-      <li><a href="#">q/campuslife <span class="count">14.2k</span></a></li>
-      <li><a href="#">q/computerscience <span class="count">9.8k</span></a></li>
-      <li><a href="#">q/studyabroad <span class="count">3.1k</span></a></li>
-      <li><a href="#">q/intramurals <span class="count">2.4k</span></a></li>
-      <li><a href="#">q/dininghall <span class="count">1.7k</span></a></li>
-    </ul>
-    <div class="rail-title">Discover</div>
-    <ul class="community-list">
-      <li><a href="#">q/freefood <span class="count">21k</span></a></li>
-      <li><a href="#">q/latenightlib <span class="count">6.5k</span></a></li>
-    </ul>
+    <div class="card profile-card">
+      <div class="profile-top">
+        <div class="avatar-lg">JE</div>
+        <div>
+          <div class="profile-name">Jordan Ellis</div>
+          <span class="badge badge-student">Student</span>
+        </div>
+      </div>
+      <div class="profile-field"><strong>Major:</strong> Computer Science</div>
+      <div class="profile-field">
+        <strong>Clubs/orgs you admin</strong> <span class="field-note">(5 max)</span>
+        <ul class="admin-list">
+          <li>Robotics Club</li>
+          <li>Chess Club</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rail-section-title">Following</div>
+    <div class="rail-section-sub">as a normal member</div>
+    <div class="card" style="padding:8px 12px;">
+      <ul class="following-list">
+        <li><a href="club.html">Robotics Club</a></li>
+        <li><a href="club.html">Chess Club</a></li>
+        <li><a href="club.html">Data Science Club</a></li>
+        <li><a href="club.html">Outdoors Club</a></li>
+        <li><a href="club.html">Debate Society</a></li>
+        <li><a href="club.html">Photography Club</a></li>
+      </ul>
+    </div>
   </aside>
 
+  <!-- CENTER: compose + tabs + feed -->
   <main>
-    <div class="feed-header">
-      <h1>Home</h1>
-      <div class="sort-tabs">
-        <a href="#" class="active">Best</a>
-        <a href="#">New</a>
-        <a href="#">Top</a>
+
+    <div class="compose-box">
+      <div class="compose-visibility">&#128065; Visible to Faculty &amp; Club Faculty only</div>
+      <div class="compose-row">
+        <select class="club-select">
+          <option>Post as: Robotics Club</option>
+          <option>Post as: Chess Club</option>
+          <option>Post as: Data Science Club</option>
+        </select>
+      </div>
+      <textarea placeholder="Share an announcement, event, or update..."></textarea>
+      <div class="compose-footer">
+        <select class="type-select">
+          <option>Type: Event</option>
+          <option>Type: Workshop</option>
+          <option>Type: Research</option>
+        </select>
+        <button class="btn btn-primary">Post</button>
       </div>
     </div>
 
-    <div class="post">
-      <div class="vote">
-        <span class="arrow up">&#9650;</span>
-        <span class="score">842</span>
-        <span class="arrow down">&#9660;</span>
+    <input type="radio" name="hometabs" id="tab-posts" class="tab-input" checked>
+    <input type="radio" name="hometabs" id="tab-research" class="tab-input">
+    <input type="radio" name="hometabs" id="tab-prof" class="tab-input">
+
+    <div class="tab-labels">
+      <label for="tab-posts" class="tab-label">Posts</label>
+      <label for="tab-research" class="tab-label">Research</label>
+      <label for="tab-prof" class="tab-label">Prof.</label>
+    </div>
+
+    <!-- POSTS TAB -->
+    <div class="tab-panel" id="panel-posts">
+      <div class="tag-filter-row">
+        <select><option>Major: All</option><option>Computer Science</option><option>Biology</option><option>Psychology</option><option>Business</option></select>
+        <select><option>Type: All</option><option>Event</option><option>Workshop</option><option>Research</option></select>
       </div>
-      <div class="post-body">
-        <div class="post-meta"><span class="community">q/computerscience</span> &nbsp;·&nbsp; posted by u/nullpointer &nbsp;·&nbsp; 4h</div>
-        <div class="post-title"><a href="post.html">Finally got my compiler to survive a full self-hosted build</a></div>
-        <div class="post-excerpt">Three weeks of chasing a segfault that only happened on Tuesdays. Turned out to be an uninitialized struct field. Writing up the whole debugging story if anyone's interested.</div>
-        <span class="tag">Project</span><span class="tag gold">Milestone</span>
-        <div class="post-actions">
-          <a href="post.html">213 comments</a>
-          <a href="#">Share</a>
-          <a href="#">Save</a>
+
+      <div class="wb-post">
+        <div class="wb-post-head">
+          <div class="wb-post-pic">RC</div>
+          <div class="wb-post-clubname">Robotics Club</div>
+          <div class="wb-post-hashtag">#DSC</div>
+        </div>
+        <div class="wb-post-tags">
+          <span class="chip">Computer Science</span><span class="chip chip-outline">Event</span>
+        </div>
+        <div class="wb-post-content">Workshop this Friday: soldering basics for the spring competition build. Bring your own kit or borrow one at the door.</div>
+        <div class="wb-post-actions">
+          <span>&#9829; Like</span><span>&#9785; Dislike</span><span>&#128172; Comment</span>
+        </div>
+        <div class="wb-comment-row">
+          <input type="text" placeholder="Add a comment...">
+        </div>
+        <div class="wb-comment-note">Comments notify the poster by email · replies are a single, isolated reply (no nested threads)</div>
+      </div>
+
+      <div class="wb-post">
+        <div class="wb-post-head">
+          <div class="wb-post-pic">DS</div>
+          <div class="wb-post-clubname">Data Science Club</div>
+          <div class="wb-post-hashtag">#DataSci</div>
+        </div>
+        <div class="wb-post-tags">
+          <span class="chip">Computer Science</span><span class="chip chip-outline">Workshop</span>
+        </div>
+        <div class="wb-post-content">Intro to pandas session next Tuesday, 6pm in Wachman 413. No experience needed, laptops provided for the first 20 to sign up.</div>
+        <div class="wb-post-actions">
+          <span>&#9829; Like</span><span>&#9785; Dislike</span><span>&#128172; Comment</span>
+        </div>
+        <div class="wb-comment-row">
+          <input type="text" placeholder="Add a comment...">
         </div>
       </div>
     </div>
 
-    <div class="post">
-      <div class="vote">
-        <span class="arrow up">&#9650;</span>
-        <span class="score">301</span>
-        <span class="arrow down">&#9660;</span>
+    <!-- RESEARCH TAB -->
+    <div class="tab-panel" id="panel-research">
+      <div class="tag-filter-row">
+        <select><option>Major: All</option><option>Computer Science</option><option>Biology</option><option>Psychology</option></select>
+        <select><option>Level: All</option><option>Undergrad</option><option>Grad</option></select>
       </div>
-      <div class="post-body">
-        <div class="post-meta"><span class="community">q/dininghall</span> &nbsp;·&nbsp; posted by u/waffle_iron &nbsp;·&nbsp; 6h</div>
-        <div class="post-title"><a href="#">They brought back the pesto station and I have never felt more alive</a></div>
-        <div class="post-excerpt">Not a drill. West wing, lunch only, till they run out.</div>
-        <span class="tag">Food</span>
-        <div class="post-actions">
-          <a href="#">88 comments</a>
-          <a href="#">Share</a>
-          <a href="#">Save</a>
+
+      <div class="wb-post">
+        <div class="wb-post-head">
+          <div class="wb-post-pic">EM</div>
+          <div class="wb-post-clubname">Dr. Elena Marsh Lab</div>
+          <div class="wb-post-hashtag">#Research</div>
+        </div>
+        <div class="wb-post-tags">
+          <span class="chip">Biology</span><span class="chip chip-outline">Grad</span>
+        </div>
+        <div class="wb-post-content">Recruiting one grad research assistant for a spring semester project on coral microbiomes. Apply through the department portal.</div>
+        <div class="wb-post-actions">
+          <span>&#9829; Like</span><span>&#9785; Dislike</span><span>&#128172; Comment</span>
+        </div>
+        <div class="wb-comment-row">
+          <input type="text" placeholder="Add a comment...">
+        </div>
+      </div>
+
+      <div class="wb-post">
+        <div class="wb-post-head">
+          <div class="wb-post-pic">PS</div>
+          <div class="wb-post-clubname">Psych Cognition Lab</div>
+          <div class="wb-post-hashtag">#Research</div>
+        </div>
+        <div class="wb-post-tags">
+          <span class="chip">Psychology</span><span class="chip chip-outline">Undergrad</span>
+        </div>
+        <div class="wb-post-content">Looking for two undergrad volunteers to help run memory-task sessions this fall. Great for anyone applying to grad programs.</div>
+        <div class="wb-post-actions">
+          <span>&#9829; Like</span><span>&#9785; Dislike</span><span>&#128172; Comment</span>
+        </div>
+        <div class="wb-comment-row">
+          <input type="text" placeholder="Add a comment...">
         </div>
       </div>
     </div>
 
-    <div class="post">
-      <div class="vote">
-        <span class="arrow up">&#9650;</span>
-        <span class="score">156</span>
-        <span class="arrow down">&#9660;</span>
+    <!-- PROF TAB -->
+    <div class="tab-panel" id="panel-prof">
+      <div class="tag-filter-row">
+        <select><option>Major: All</option><option>Computer Science</option><option>Biology</option><option>Psychology</option></select>
+        <select><option>Research: Any</option><option>Has active research</option><option>No active research</option></select>
       </div>
-      <div class="post-body">
-        <div class="post-meta"><span class="community">q/studyabroad</span> &nbsp;·&nbsp; posted by u/marta_k &nbsp;·&nbsp; 9h</div>
-        <div class="post-title"><a href="#">Question: how early did you apply for the Seoul exchange program?</a></div>
-        <div class="post-excerpt">Advisor says deadlines moved up this year but I can't find it confirmed anywhere official.</div>
-        <span class="tag">Question</span>
-        <div class="post-actions">
-          <a href="#">42 comments</a>
-          <a href="#">Share</a>
-          <a href="#">Save</a>
+
+      <div class="card" style="padding:6px 16px;">
+        <div class="prof-card">
+          <div class="avatar-lg">EM</div>
+          <div>
+            <div class="prof-name">Dr. Elena Marsh</div>
+            <div class="prof-major">Teaches: Biology</div>
+            <span class="chip">Has active research</span>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="avatar-lg">RK</div>
+          <div>
+            <div class="prof-name">Dr. Raj Kapoor</div>
+            <div class="prof-major">Teaches: Computer Science</div>
+            <span class="chip chip-outline">No active research</span>
+          </div>
+        </div>
+        <div class="prof-card">
+          <div class="avatar-lg">SL</div>
+          <div>
+            <div class="prof-name">Dr. Sofia Lin</div>
+            <div class="prof-major">Teaches: Psychology</div>
+            <span class="chip">Has active research</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="post">
-      <div class="vote">
-        <span class="arrow up">&#9650;</span>
-        <span class="score">1.2k</span>
-        <span class="arrow down">&#9660;</span>
-      </div>
-      <div class="post-body">
-        <div class="post-meta"><span class="community">q/intramurals</span> &nbsp;·&nbsp; posted by u/left_bench &nbsp;·&nbsp; 12h</div>
-        <div class="post-title"><a href="#">Our 0-8 dodgeball team won our final game and I have never screamed louder</a></div>
-        <div class="post-excerpt">Justice is real. Season recap and a thank you to everyone who showed up even in the rain.</div>
-        <span class="tag gold">Milestone</span>
-        <div class="post-actions">
-          <a href="#">301 comments</a>
-          <a href="#">Share</a>
-          <a href="#">Save</a>
-        </div>
-      </div>
-    </div>
   </main>
 
+  <!-- RIGHT RAIL: filter + club browse -->
   <aside class="rail-right">
     <div class="card">
-      <h2>q/computerscience</h2>
-      <p>Coursework help, project showcases, and the occasional compiler rant.</p>
-      <div class="stat-row"><span>Members</span><strong>9,842</strong></div>
-      <div class="stat-row"><span>Online now</span><strong>312</strong></div>
-      <button class="btn btn-primary" style="width:100%;margin-top:10px;">Join</button>
+      <h2>Filter</h2>
+      <div class="filter-field">
+        <label>Sort by</label>
+        <select><option>Newest</option><option>Popular</option></select>
+      </div>
+      <div class="filter-field">
+        <label>Club</label>
+        <select>
+          <option>All Clubs</option>
+          <option>Robotics Club</option>
+          <option>Chess Club</option>
+          <option>Data Science Club</option>
+        </select>
+      </div>
     </div>
+
     <div class="card">
-      <h2>Community guidelines</h2>
-      <p>Be constructive. Cite your sources. No posting exam answers.</p>
+      <h2>Browse Clubs</h2>
+      <ul class="club-mini-list">
+        <li><a href="club.html">Robotics Club</a></li>
+        <li><a href="club.html">Chess Club</a></li>
+        <li><a href="club.html">Data Science Club</a></li>
+        <li><a href="club.html">Outdoors Club</a></li>
+      </ul>
     </div>
   </aside>
 
