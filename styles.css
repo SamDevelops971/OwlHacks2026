@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
-
+ 
 :root{
   --bg: #F6F4EF;
   --panel: #FBFAF7;
@@ -10,68 +10,9 @@
   --cherry-dark: #6E1524;
   --cherry-light: #C93B52;
   --cherry-soft: #F4E0E3;
-  --gradient: linear-gradient(135deg, var(--cherry-light) 0%, var(--cherry) 55%, var(--cherry-dark) 100%);
   --down: #5B584F;
 }
 /*Hi*/
-
-/*Login Info*/
-
-.hidden {
-  display: none;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-
-.popupContainer {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  width: 300px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 1.2rem;
-  border: solid var(--cherry-light) 2px;
-
-  img { /*TuLogo on login button*/
-    height: 0.9em;
-    margin-right: 5px;
-    margin-top: 5px;
-  }
-}
-
-.close-button {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  text-align: center;
-}
-
-#TULogin {
-  font-size: 16px;
-  border: solid var(--cherry-soft) 2px;
-  border-radius: 4px;
-  font-family:'Fraunces',serif;
-}
-
 
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
@@ -84,7 +25,7 @@ body{
 }
 a{color:inherit;text-decoration:none;}
 h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
-
+ 
 /* ---------- Top bar ---------- */
 .topbar{
   display:flex;
@@ -101,10 +42,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   letter-spacing:-0.01em;
 }
 .brand span{
-  background:var(--gradient);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+  color:var(--cherry);
 }
 .search{
   flex:1;
@@ -132,7 +70,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 }
 .btn-primary{background:var(--cherry);color:#fff;}
 .btn-ghost{background:transparent;border-color:var(--border);color:var(--ink);}
-
+ 
 /* ---------- Layout ---------- */
 .layout{
   display:grid;
@@ -147,7 +85,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   .layout{grid-template-columns:1fr; max-width:640px;}
   .rail-left,.rail-right{display:none;}
 }
-
+ 
 /* ---------- Left rail ---------- */
 .rail-left .rail-title{
   text-transform:none;
@@ -169,7 +107,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 .community-list a:hover{background:var(--cherry-soft);color:var(--ink);}
 .community-list a.active{background:var(--cherry-soft);color:var(--cherry);font-weight:600;}
 .community-list .count{color:var(--ink-soft);font-size:12.5px;}
-
+ 
 /* ---------- Feed / posts ---------- */
 .feed-header{
   display:flex;
@@ -182,7 +120,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 .feed-header h1{font-size:22px;}
 .sort-tabs{display:flex;gap:16px;font-size:13.5px;color:var(--ink-soft);}
 .sort-tabs a.active{color:var(--ink);font-weight:600;border-bottom:2px solid var(--cherry);padding-bottom:10px;}
-
+ 
 .post{
   display:flex;
   gap:14px;
@@ -206,7 +144,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 .vote .arrow.up:hover{color:var(--cherry);}
 .vote .arrow.down:hover{color:var(--down);}
 .vote .score{font-size:13px;font-weight:600;color:var(--ink);}
-
+ 
 .post-body{flex:1;min-width:0;}
 .post-meta{
   font-size:12.5px;
@@ -243,7 +181,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   margin-right:6px;
 }
 .tag.gold{background:#FAE3E7;color:var(--cherry-light);}
-
+ 
 /* ---------- Right rail ---------- */
 .card{
   background:var(--panel);
@@ -257,7 +195,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 .card .stat-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-top:1px solid var(--border);}
 .card .stat-row:first-of-type{border-top:none;}
 .card .stat-row strong{color:var(--ink);}
-
+ 
 /* ---------- Post detail page ---------- */
 .back-link{
   display:inline-block;
@@ -281,7 +219,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   max-width:70ch;
 }
 .post-full .post-content p{margin:0 0 12px 0;}
-
+ 
 .comments-header{
   font-size:15px;
   font-weight:600;
@@ -306,9 +244,9 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 .comment-text{font-size:14px;margin-bottom:6px;}
 .comment-actions{font-size:12.5px;color:var(--ink-soft);display:flex;gap:14px;}
 .replies{margin-left:26px;border-left:1px solid var(--border);padding-left:16px;margin-top:4px;}
-
+ 
 /* ================= TuFlock additions ================= */
-
+ 
 /* ---- Profile card (left rail) ---- */
 .profile-card{padding:18px;}
 .profile-top{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
@@ -331,7 +269,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 .admin-list li{padding:3px 0;color:var(--ink);}
 .admin-list li::before{content:"\25CF ";color:var(--cherry);font-size:8px;}
 .field-note{font-size:11.5px;color:var(--ink-soft);font-style:italic;margin-top:4px;}
-
+ 
 .rail-section-title{font-size:13px;font-weight:600;margin:20px 0 4px 4px;}
 .rail-section-sub{font-size:11px;color:var(--ink-soft);margin:0 0 8px 4px;}
 .following-list{
@@ -343,7 +281,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   font-size:14px;color:var(--ink-soft);
 }
 .following-list li a:hover{background:var(--cherry-soft);color:var(--cherry);}
-
+ 
 /* ---- Faculty-only compose box ---- */
 .compose-box{
   background:var(--panel);border:1px solid var(--border);
@@ -368,11 +306,11 @@ select{
   margin-bottom:10px;background:#fff;
 }
 .compose-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;}
-
+ 
 /* ---- Tag filter row ---- */
 .tag-filter-row{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
 .tag-filter-row select{font-size:13px;}
-
+ 
 /* ---- CSS-only tabs ---- */
 .tab-input{position:absolute;opacity:0;pointer-events:none;}
 .tab-labels{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:16px;}
@@ -389,7 +327,7 @@ select{
 #tab-posts:checked ~ #panel-posts,
 #tab-research:checked ~ #panel-research,
 #tab-prof:checked ~ #panel-prof{display:block;}
-
+ 
 /* ---- Chips ---- */
 .chip{
   display:inline-block;font-size:11.5px;font-weight:600;
@@ -397,7 +335,7 @@ select{
   background:var(--cherry-soft);color:var(--cherry);
 }
 .chip-outline{background:transparent;border:1px solid var(--border);color:var(--ink-soft);}
-
+ 
 /* ---- Post card (whiteboard style) ---- */
 .wb-post{
   background:var(--panel);border:1px solid var(--border);
@@ -426,7 +364,7 @@ select{
   padding:8px 14px;font-size:13.5px;font-family:'Inter',sans-serif;
 }
 .wb-comment-note{font-size:11px;color:var(--ink-soft);margin-top:6px;}
-
+ 
 /* ---- Professor directory ---- */
 .prof-card{
   display:flex;align-items:center;gap:14px;
@@ -434,7 +372,7 @@ select{
 }
 .prof-name{font-weight:600;font-size:15px;}
 .prof-major{font-size:13px;color:var(--ink-soft);margin:2px 0 6px 0;}
-
+ 
 /* ---- Right rail: filter + club list ---- */
 .filter-field{margin-bottom:12px;}
 .filter-field label{display:block;font-size:12px;color:var(--ink-soft);margin-bottom:5px;}
@@ -446,20 +384,72 @@ select{
 }
 .club-mini-list li:last-child a{border-bottom:none;}
 .club-mini-list li a:hover{color:var(--cherry);}
-
+ 
 /* ---- Club page ---- */
-.club-header{
+.club-header-card{
   background:var(--panel);border:1px solid var(--border);border-radius:10px;
-  padding:22px;margin-bottom:20px;display:flex;gap:18px;align-items:center;
+  overflow:hidden;margin-bottom:20px;
 }
 .club-banner{
-  width:64px;height:64px;border-radius:12px;flex-shrink:0;
-  background:var(--gradient);
+  height:110px;background:var(--cherry);position:relative;
 }
+.banner-edit{
+  position:absolute;top:12px;right:14px;
+  background:rgba(0,0,0,0.35);color:#fff;
+  font-size:12px;font-weight:600;padding:6px 12px;border-radius:6px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+}
+.banner-edit:hover{background:rgba(0,0,0,0.5);}
+.club-header-body{
+  display:flex;gap:16px;align-items:flex-end;
+  padding:24px 22px 20px 22px;
+  position:relative;
+}
+.club-header-body .avatar-wrap{
+  position:absolute;
+  left:22px;
+  top:-32px;
+}
+.avatar-xl{width:64px;height:64px;font-size:19px;border:3px solid var(--panel);}
+.club-header-info{flex:1;margin-left:80px;}
 .club-title{font-family:'Fraunces',serif;font-size:24px;font-weight:700;}
 .club-sub{font-size:13.5px;color:var(--ink-soft);margin:4px 0 10px 0;}
 .club-stats{display:flex;gap:18px;font-size:13px;color:var(--ink-soft);}
 .club-stats strong{color:var(--ink);}
-.club-header .btn{margin-left:auto;align-self:center;}
+.club-header-body .btn{margin-left:auto;}
 .member-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13.5px;}
 .member-row:last-child{border-bottom:none;}
+ 
+/* ---- Profile picture upload ---- */
+.avatar-wrap{position:relative;display:inline-block;flex-shrink:0;}
+.avatar-wrap input[type="file"]{display:none;}
+.avatar-edit{
+  position:absolute;bottom:-2px;right:-2px;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--cherry);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;cursor:pointer;border:2px solid var(--panel);
+}
+.avatar-edit:hover{background:var(--cherry-dark);}
+ 
+/* ---- File-picker styled buttons (photo/image attach) ---- */
+.file-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--border);border-radius:6px;
+  padding:7px 12px;font-size:13px;color:var(--ink-soft);
+  cursor:pointer;background:#fff;
+}
+.file-btn:hover{color:var(--cherry);border-color:var(--cherry);}
+.file-btn input[type="file"]{display:none;}
+.compose-media-row{margin-bottom:10px;}
+ 
+/* ---- Post image ---- */
+.wb-post-image{
+  width:100%;height:150px;border-radius:8px;margin-bottom:12px;
+  background:var(--cherry-soft);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cherry);font-size:13px;font-weight:600;
+}
+ 
+/* ---- Filter confirm button ---- */
+.btn-small{padding:6px 16px;font-size:12.5px;}

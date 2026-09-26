@@ -1,6 +1,6 @@
 const users = new Map();
 const posts = new Map();
-const votes = new Set();
+const likes = new Set();
 const comments = new Map();
 const follow = new Set();
 
