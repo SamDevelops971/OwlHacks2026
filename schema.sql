@@ -41,6 +41,18 @@ CREATE TABLE IF NOT EXISTS votes (
   PRIMARY KEY (user_id, post_id)
 );
 
+CREATE TABLE IF NOT EXISTS comment_votes (
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  comment_id INTEGER NOT NULL REFERENCES comments(id) ON DELETE CASCADE,
+  value INTEGER NOT NULL CHECK (value IN (-1, 1)),
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  PRIMARY KEY (user_id, comment_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_comment_votes_comment_id ON comment_votes(comment_id);
+
+ALTER TABLE votes ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT NOW();
+
 CREATE INDEX IF NOT EXISTS idx_posts_club_id ON posts(club_id);
 CREATE INDEX IF NOT EXISTS idx_comments_post_id ON comments(post_id);
 CREATE INDEX IF NOT EXISTS idx_votes_post_id ON votes(post_id);
