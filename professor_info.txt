@@ -1,0 +1,11 @@
+First_Name, Last_Name, Title, Faculty, Email
+Andrew, Rosen, Associate Professor Of Instruction, College of Science And Technology: Computer and Information Sciences, andrew.rosen@temple.edu
+Charles, Abramovic, Professor, Boyer College of Music And Dance: Instrumental Studies, charles.abramovic@temple.edu
+Derek, Fisher, Associate Professor Of Instruction, College Of Science And Technology: Computer And Information Sciences, derek.fisher@temple.edu
+Wei-Shih, Yang, Professor, College Of Science And Technology: Mathematics, wei-shih.yang@temple.edu
+Xavier, Grana-Amat, Professor, Lewis Katz School Of Medicine: Fels Cancer Institute For Personalized Medicine, xgrana@temple.edu
+Wanisha, Smith, Associate Head Women's Basketball Coach, Intercollegiate Athletics: Women's Basketball, wanisha.smith@temple.edu
+Heath, Davis, Professor and Chair, College of Liberal Arts: Political Science, heath.davis@temple.edu
+Katrin, Heineman, Professor, School of Podiatric Medicine: Podiatric Surgery, katrin.heineman@temple.edu
+Maria, Lorenz, Professor Of Instruction, College of Science And Technology: Mathmatics, maria.lorenz@temple.edu
+John, Fiore, Associate Professor Of Instruction and Vice Chair, College of Science And Technology: Computer And Information Sciences, jfiore@temple.edu
