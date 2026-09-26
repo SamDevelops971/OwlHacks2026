@@ -6,32 +6,23 @@ const verifyCsrf = require('../middleware/csrf');
 const postController = require('../controllers/post.controller');
 
 const router = express.Router();
+router.use(verifyCsrf); // no-op on GET requests
 
-// Applies to every route below. Internally a no-op for GET requests —
-// only POST/PATCH/DELETE need the CSRF check, since only those change data.
-router.use(verifyCsrf);
-
-// Feed must come before "/:id" so Express doesn't treat "feed" as a post ID
-router.get('/feed', authenticate, postController.getFeed);
-
-router.post(
-  '/',
-  authenticate,
-  [body('text').trim().isLength({ min: 1, max: 500 }).withMessage('1-500 characters')],
-  validate,
-  postController.createPost
-);
+// General feed across all clubs — GET /posts?cursor=&limit=
+// Must come before "/:id" so Express doesn't treat nothing-here as an id.
+router.get('/', optionalAuth, postController.listAllPosts);
 
 router.get('/:id', optionalAuth, postController.getPost);
 router.delete('/:id', authenticate, postController.deletePost);
 
-router.post('/:id/like', authenticate, postController.likePost);
-router.delete('/:id/like', authenticate, postController.unlikePost);
+router.post('/:id/upvote', authenticate, postController.upvote);
+router.post('/:id/downvote', authenticate, postController.downvote);
+router.delete('/:id/vote', authenticate, postController.removeVote);
 
 router.post(
   '/:id/comments',
   authenticate,
-  [body('text').trim().isLength({ min: 1, max: 300 }).withMessage('1-300 characters')],
+  [body('body').trim().isLength({ min: 1, max: 1000 }).withMessage('1-1000 characters')],
   validate,
   postController.addComment
 );

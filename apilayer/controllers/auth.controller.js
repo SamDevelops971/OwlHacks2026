@@ -1,5 +1,4 @@
 const authService = require('../services/auth.service');
-const userService = require('../services/user.service');
 const { catchAsync } = require('../middleware/errorHandler');
 const { generateCsrfToken } = require('../utils/csrf');
 

@@ -1,118 +1,131 @@
-const { v4: uuidv4 } = require('uuid');
-const { posts, likes, comments, follows, users } = require('../models/store');
+const { query } = require('../config/db');
 const AppError = require('../utils/AppError');
+const clubService = require('./club.service');
 
-function enrichPost(post, viewerId) {
-  const author = users.get(post.authorId);
-  const likeSet = likes.get(post.id) || new Set();
-  const postComments = comments.get(post.id) || [];
+/**
+ * This single query is doing the work that enrichPost() used to do by
+ * hand in the in-memory version: joining in the author's username and
+ * the club's name, and computing the vote score and comment count with
+ * a real SQL aggregate instead of looping over JS Maps.
+ *
+ * COALESCE(SUM(v.value), 0) — SUM() returns NULL if a post has zero
+ * rows in votes (nothing to sum), so COALESCE substitutes 0 instead of
+ * letting a fresh, unvoted post show a score of null.
+ *
+ * The comment count is a correlated subquery rather than another JOIN,
+ * because joining both votes AND comments directly would multiply rows
+ * (one row per vote-comment combination) and inflate the SUM. Keeping
+ * it as a subquery avoids that without needing DISTINCT gymnastics.
+ */
+const POST_SELECT = `
+  SELECT
+    p.id, p.title, p.body, p.club_id, p.author_id, p.created_at,
+    u.username AS author_username,
+    c.name AS club_name,
+    COALESCE(SUM(v.value), 0)::int AS score,
+    (SELECT COUNT(*)::int FROM comments cm WHERE cm.post_id = p.id) AS comment_count
+  FROM posts p
+  JOIN users u ON u.id = p.author_id
+  JOIN clubs c ON c.id = p.club_id
+  LEFT JOIN votes v ON v.post_id = p.id
+`;
+const POST_GROUP_BY = ` GROUP BY p.id, u.username, c.name `;
 
+function shapePost(row, myVote) {
   return {
-    id: post.id,
-    text: post.text,
-    createdAt: post.createdAt,
-    author: author ? { id: author.id, username: author.username } : null,
-    likeCount: likeSet.size,
-    likedByMe: viewerId ? likeSet.has(viewerId) : false,
-    commentCount: postComments.length,
+    id: row.id,
+    title: row.title,
+    body: row.body,
+    createdAt: row.created_at,
+    club: { id: row.club_id, name: row.club_name },
+    author: { id: row.author_id, username: row.author_username },
+    score: row.score,
+    commentCount: row.comment_count,
+    // null = viewer hasn't voted, 1 = upvoted, -1 = downvoted
+    myVote: myVote ?? null,
   };
 }
 
-function createPost(authorId, text) {
-  const post = { id: uuidv4(), authorId, text, createdAt: new Date().toISOString() };
-  posts.set(post.id, post);
-  return enrichPost(post, authorId);
+async function getMyVote(postId, userId) {
+  if (!userId) return null;
+  const result = await query(
+    `SELECT value FROM votes WHERE post_id = $1 AND user_id = $2`,
+    [postId, userId]
+  );
+  return result.rows[0]?.value ?? null;
 }
 
-function getPost(postId, viewerId) {
-  const post = posts.get(postId);
-  if (!post) throw new AppError('Post not found', 404);
-  return enrichPost(post, viewerId);
+async function createPost(clubId, authorId, { title, body }) {
+  await clubService.getClubById(clubId); // throws 404 if the club doesn't exist
+
+  const insertResult = await query(
+    `INSERT INTO posts (title, body, club_id, author_id) VALUES ($1, $2, $3, $4) RETURNING id`,
+    [title, body || null, clubId, authorId]
+  );
+  return getPost(insertResult.rows[0].id, authorId);
 }
 
-function deletePost(postId, requesterId) {
-  const post = posts.get(postId);
+async function getPost(postId, viewerId) {
+  const result = await query(`${POST_SELECT} WHERE p.id = $1 ${POST_GROUP_BY}`, [postId]);
+  if (!result.rows[0]) throw new AppError('Post not found', 404);
+
+  const myVote = await getMyVote(postId, viewerId);
+  return shapePost(result.rows[0], myVote);
+}
+
+async function deletePost(postId, requesterId) {
+  const result = await query(`SELECT author_id FROM posts WHERE id = $1`, [postId]);
+  const post = result.rows[0];
   if (!post) throw new AppError('Post not found', 404);
-  if (post.authorId !== requesterId) {
+  if (post.author_id !== requesterId) {
     throw new AppError('You can only delete your own posts', 403);
   }
-  posts.delete(postId);
-  likes.delete(postId);
-  comments.delete(postId);
+
+  // ON DELETE CASCADE in schema.sql means Postgres automatically removes
+  // this post's comments and votes too — no manual cleanup needed here,
+  // unlike the in-memory version which had to delete from 3 maps by hand.
+  await query(`DELETE FROM posts WHERE id = $1`, [postId]);
   return { deleted: true };
 }
 
 /**
- * getFeed: a simplified "pull" model feed — at request time, gather
- * posts from everyone the user follows (plus their own), sort by
- * recency, and paginate with a cursor.
- *
- * Real-world feeds at scale usually use a "push" (fan-out-on-write)
- * model instead: when someone posts, the post ID is pushed into each
- * follower's precomputed feed list immediately, so reading the feed
- * later is a cheap lookup instead of an expensive join at read time.
- * Pull works fine for small/medium scale and is much simpler to reason about.
+ * listPosts: powers both "all recent posts" (no clubId) and "posts in
+ * one club" (clubId given) with the same query, using cursor-based
+ * pagination on the post's own numeric id. Because ids are SERIAL
+ * (auto-incrementing), a lower id always means an earlier post, so
+ * "give me posts with id < cursor" is a correct and cheap way to page
+ * through results without needing a separate created_at comparison.
  */
-function getFeed(userId, { cursor, limit = 10 }) {
-  const followingIds = new Set(follows.get(userId) || []);
-  followingIds.add(userId); // include your own posts in your feed
+async function listPosts({ clubId, cursor, limit = 10, viewerId }) {
+  const conditions = [];
+  const params = [];
 
-  let relevantPosts = [...posts.values()]
-    .filter(p => followingIds.has(p.authorId))
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
+  if (clubId) {
+    params.push(clubId);
+    conditions.push(`p.club_id = $${params.length}`);
+  }
   if (cursor) {
-    const cursorIndex = relevantPosts.findIndex(p => p.id === cursor);
-    if (cursorIndex >= 0) relevantPosts = relevantPosts.slice(cursorIndex + 1);
+    params.push(cursor);
+    conditions.push(`p.id < $${params.length}`);
   }
 
-  const page = relevantPosts.slice(0, limit);
-  const nextCursor = page.length === limit ? page[page.length - 1].id : null;
+  const whereClause = conditions.length ? `WHERE ${conditions.join(' AND ')}` : '';
+  params.push(limit);
+  const limitClause = `LIMIT $${params.length}`;
 
-  return {
-    posts: page.map(p => enrichPost(p, userId)),
-    nextCursor,
-  };
+  const result = await query(
+    `${POST_SELECT} ${whereClause} ${POST_GROUP_BY} ORDER BY p.id DESC ${limitClause}`,
+    params
+  );
+
+  const posts = [];
+  for (const row of result.rows) {
+    const myVote = await getMyVote(row.id, viewerId);
+    posts.push(shapePost(row, myVote));
+  }
+
+  const nextCursor = posts.length === limit ? posts[posts.length - 1].id : null;
+  return { posts, nextCursor };
 }
 
-function likePost(postId, userId) {
-  if (!posts.has(postId)) throw new AppError('Post not found', 404);
-  if (!likes.has(postId)) likes.set(postId, new Set());
-  likes.get(postId).add(userId);
-  return { liked: true, likeCount: likes.get(postId).size };
-}
-
-function unlikePost(postId, userId) {
-  likes.get(postId)?.delete(userId);
-  return { liked: false, likeCount: likes.get(postId)?.size || 0 };
-}
-
-function addComment(postId, authorId, text) {
-  if (!posts.has(postId)) throw new AppError('Post not found', 404);
-  if (!comments.has(postId)) comments.set(postId, []);
-
-  const comment = { id: uuidv4(), authorId, text, createdAt: new Date().toISOString() };
-  comments.get(postId).push(comment);
-
-  const author = users.get(authorId);
-  return { ...comment, author: { id: author.id, username: author.username } };
-}
-
-function getComments(postId) {
-  if (!posts.has(postId)) throw new AppError('Post not found', 404);
-  return (comments.get(postId) || []).map(c => {
-    const author = users.get(c.authorId);
-    return { ...c, author: { id: author.id, username: author.username } };
-  });
-}
-
-module.exports = {
-  createPost,
-  getPost,
-  deletePost,
-  getFeed,
-  likePost,
-  unlikePost,
-  addComment,
-  getComments,
-};
+module.exports = { createPost, getPost, deletePost, listPosts };
