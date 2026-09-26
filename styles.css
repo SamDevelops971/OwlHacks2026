@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
-
+ 
 :root{
   --bg: #F6F4EF;
   --panel: #FBFAF7;
@@ -12,10 +12,8 @@
   --cherry-soft: #F4E0E3;
   --gradient: linear-gradient(135deg, var(--cherry-light) 0%, var(--cherry) 55%, var(--cherry-dark) 100%);
   --down: #5B584F;
-  --gold: #C9A227;
-
 }
-
+ 
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
 body{
@@ -27,7 +25,7 @@ body{
 }
 a{color:inherit;text-decoration:none;}
 h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
-
+ 
 /* ---------- Top bar ---------- */
 .topbar{
   display:flex;
@@ -43,7 +41,12 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   font-size:22px;
   letter-spacing:-0.01em;
 }
-.brand span{color:var(--gradient);}
+.brand span{
+  background:var(--gradient);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
 .search{
   flex:1;
   max-width:420px;
@@ -70,7 +73,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 }
 .btn-primary{background:var(--gradient);color:#fff;}
 .btn-ghost{background:transparent;border-color:var(--border);color:var(--ink);}
-
+ 
 /* ---------- Layout ---------- */
 .layout{
   display:grid;
@@ -85,7 +88,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   .layout{grid-template-columns:1fr; max-width:640px;}
   .rail-left,.rail-right{display:none;}
 }
-
+ 
 /* ---------- Left rail ---------- */
 .rail-left .rail-title{
   text-transform:none;
@@ -107,7 +110,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 .community-list a:hover{background:var(--cherry-soft);color:var(--ink);}
 .community-list a.active{background:var(--cherry-soft);color:var(--cherry);font-weight:600;}
 .community-list .count{color:var(--ink-soft);font-size:12.5px;}
-
+ 
 /* ---------- Feed / posts ---------- */
 .feed-header{
   display:flex;
@@ -119,8 +122,8 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 }
 .feed-header h1{font-size:22px;}
 .sort-tabs{display:flex;gap:16px;font-size:13.5px;color:var(--ink-soft);}
-.sort-tabs a.active{color:var(--ink);font-weight:600;border-bottom:2px solid var(--forest);padding-bottom:10px;}
-
+.sort-tabs a.active{color:var(--ink);font-weight:600;border-bottom:2px solid var(--cherry);padding-bottom:10px;}
+ 
 .post{
   display:flex;
   gap:14px;
@@ -144,7 +147,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 .vote .arrow.up:hover{color:var(--cherry);}
 .vote .arrow.down:hover{color:var(--down);}
 .vote .score{font-size:13px;font-weight:600;color:var(--ink);}
-
+ 
 .post-body{flex:1;min-width:0;}
 .post-meta{
   font-size:12.5px;
@@ -176,12 +179,12 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   font-size:11.5px;
   padding:2px 8px;
   border-radius:20px;
-  background:var(--forest-soft);
-  color:var(--forest);
+  background:var(--cherry-soft);
+  color:var(--cherry);
   margin-right:6px;
 }
-.tag.gold{background:#F5EED0;color:#8A6D14;}
-
+.tag.gold{background:#FAE3E7;color:var(--cherry-light);}
+ 
 /* ---------- Right rail ---------- */
 .card{
   background:var(--panel);
@@ -195,7 +198,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
 .card .stat-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-top:1px solid var(--border);}
 .card .stat-row:first-of-type{border-top:none;}
 .card .stat-row strong{color:var(--ink);}
-
+ 
 /* ---------- Post detail page ---------- */
 .back-link{
   display:inline-block;
@@ -219,7 +222,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   max-width:70ch;
 }
 .post-full .post-content p{margin:0 0 12px 0;}
-
+ 
 .comments-header{
   font-size:15px;
   font-weight:600;
