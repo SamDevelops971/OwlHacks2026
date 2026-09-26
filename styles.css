@@ -105,7 +105,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   color:var(--ink-soft);
 }
 .community-list a:hover{background:var(--cherry-soft);color:var(--ink);}
-.community-list a.active{background:var(--cherry-soft);color:var(--forest);font-weight:600;}
+.community-list a.active{background:var(--cherry-soft);color:var(--cherry);font-weight:600;}
 .community-list .count{color:var(--ink-soft);font-size:12.5px;}
 
 /* ---------- Feed / posts ---------- */
