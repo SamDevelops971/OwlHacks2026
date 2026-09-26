@@ -198,6 +198,64 @@ app.post('/api/posts/:id/comments', requireAuth, async (req, res) => {
   res.json(rows[0]);
 });
 
+// ---------- Comment Votes ----------
+app.post('/api/comments/:id/vote', requireAuth, async (req, res) => {
+  const { value } = req.body;
+  const commentId = req.params.id;
+  const userId = req.session.userId;
+
+  if (value === 0) {
+    await pool.query('DELETE FROM comment_votes WHERE user_id = $1 AND comment_id = $2', [userId, commentId]);
+  } else {
+    await pool.query(
+      `INSERT INTO comment_votes (user_id, comment_id, value) VALUES ($1, $2, $3)
+       ON CONFLICT (user_id, comment_id) DO UPDATE SET value = EXCLUDED.value`,
+      [userId, commentId, value]
+    );
+  }
+
+  const { rows } = await pool.query(
+    'SELECT COALESCE(SUM(value), 0)::int AS score FROM comment_votes WHERE comment_id = $1',
+    [commentId]
+  );
+  res.json({ score: rows[0].score });
+});
+
+app.get('/api/posts/:id/likers', async (req, res) => {
+  const { rows } = await pool.query(
+    `SELECT u.id, u.username, v.value, v.created_at
+     FROM votes v JOIN users u ON u.id = v.user_id
+     WHERE v.post_id = $1 ORDER BY v.created_at DESC`,
+    [req.params.id]
+  );
+  res.json(rows);
+});
+
+app.get('/api/comments/:id/likers', async (req, res) => {
+  const { rows } = await pool.query(
+    `SELECT u.id, u.username, v.value, v.created_at
+     FROM comment_votes v JOIN users u ON u.id = v.user_id
+     WHERE v.comment_id = $1 ORDER BY v.created_at DESC`,
+    [req.params.id]
+  );
+  res.json(rows);
+});
+
+app.get('/api/posts/:id/comments', async (req, res) => {
+  const { rows } = await pool.query(
+    `SELECT cm.id, cm.body, cm.created_at, u.username AS author,
+            COALESCE(SUM(cv.value), 0)::int AS score
+     FROM comments cm
+     JOIN users u ON u.id = cm.author_id
+     LEFT JOIN comment_votes cv ON cv.comment_id = cm.id
+     WHERE cm.post_id = $1
+     GROUP BY cm.id, u.username
+     ORDER BY cm.created_at ASC`,
+    [req.params.id]
+  );
+  res.json(rows);
+});
+
 init()
   .then(() => {
     app.listen(PORT, () => {
