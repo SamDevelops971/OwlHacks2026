@@ -452,3 +452,20 @@ select{
  
 /* ---- Filter confirm button ---- */
 .btn-small{padding:6px 16px;font-size:12.5px;}
+
+/* ---- Liked/voted state ---- */
+.vote .arrow.up.active{color:var(--cherry);}
+.vote .arrow.down.active{color:var(--down);}
+
+/* ---- Inline comment vote row ---- */
+.comment-vote{display:inline-flex;align-items:center;gap:6px;}
+.comment-vote .arrow{font-size:13px;}
+.comment-vote .score{font-size:12.5px;}
+
+/* ---- Comment composer ---- */
+.comment-form{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.comment-form textarea{
+  min-height:70px;padding:10px;border:1px solid var(--border);
+  border-radius:8px;font-size:14px;font-family:inherit;resize:vertical;
+}
+.comment-form button{align-self:flex-end;}
