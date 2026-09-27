@@ -32,21 +32,14 @@ Instead of searching through multiple sources, students can use TUgether as a st
 * JavaScript
 * Express, Postgre, Render
 
-## 🚀 Getting Started
+## 🌐 Live Website
 
-Clone the repository:
+TUgether is available online and can be accessed directly through our deployed website:
 
-```bash
-git clone https://github.com/SamDevelops971/OwlHacks2026.git
-```
+**[TUgether — Live Website](https://tu-flock.onrender.com/index.html)**
 
-Navigate into the project:
+No installation or setup is required to use TUgether.
 
-```bash
-cd OwlHacks2026
-```
-
-Then follow the setup instructions for the project to run it locally.
 
 ## 👥 Built By Students
 
