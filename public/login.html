@@ -25,17 +25,17 @@
         <button class="auth-tab" data-tab="signup" class="hidden">Sign Up</button>
       </div>
 
-      <form id="loginForm" class="auth-form">
+      <form id="loginForm" class="auth-form card">
         <label>University Email</label>
-        <input id="loginEmail" type="email" required placeholder="you@university.edu" />
+        <input id="loginEmail" class = "" type="email" required placeholder="you@university.edu" />
         <label>Password</label>
         <input id="loginPassword" type="password" required />
         <p id="loginError" class="error hidden"></p>
-        <button type="submit" class="btn-primary full">Log In</button>
+        <button type="submit" class="btn btn-primary full">Log In</button>
         <p class="hint">Demo account: alice@university.edu / password123</p>
       </form>
 
-      <form id="signupForm" class="auth-form hidden">
+      <form id="signupForm" class="auth-form hidden card">
         <label>Username</label>
         <input id="signupUsername" type="text" required />
         <label>University Email</label>
@@ -43,7 +43,7 @@
         <label>Password</label>
         <input id="signupPassword" type="password" required minlength="6" />
         <p id="signupError" class="error hidden"></p>
-        <button type="submit" class="btn-primary full">Sign Up</button>
+        <button type="submit" class="btn btn-primary full">Sign Up</button>
       </form>
     </div>
   </div>
