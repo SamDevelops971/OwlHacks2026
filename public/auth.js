@@ -34,6 +34,24 @@ async function apiLogout() {
   window.location.href = '/';
 }
 
+async function renderComposeBox(user) {
+  const posting = document.getElementById("compose-box");
+  const loginPrompt = document.getElementById("compose-login-prompt");
+
+  if (!posting || !loginPrompt) {
+    return;
+  }
+  
+  posting.style.display = user ? 'block' : 'none'; //Shows different post block depending on login status
+  loginPrompt.style.display = user ? "none" : "block";
+}
+
+async function composeHelper() {
+  const user = await getSession();
+  renderComposeBox(user);
+}
+
+
 // Renders the login/username area in the top bar. Every page includes this.
 async function renderAuthArea() {
   const el = document.getElementById('authArea');
@@ -63,3 +81,12 @@ function timeAgo(dateStr) {
   }
   return 'just now';
 }
+
+async function Authenticator() {
+  const user = await getSession();
+  renderAuthArea(user);
+  renderComposeBox(user);
+}
+
+Authenticator();
+

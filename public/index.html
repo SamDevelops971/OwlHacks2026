@@ -12,19 +12,7 @@
   <div class="brand">TU<span>Flock</span></div>
   <input class="search" type="text" placeholder="Search TuFlock">
   <div class="topbar-actions">
-    <button id="loginButton" class="btn btn-ghost">Log in</button>
-  </div>
-</div>
-
-<!--The Login popup-->
-<div id="loginPopup" class="overlay hidden">
-  <div class="popupContainer">
-
-    <h2>(Logo) TuFlock</h2>
-    <button id="close-button">&times;</button>
-    <button id="TULogin"><img src="/images.png">Login Using TuPortal</button>
-
-
+    <a href="login.html" class="btn btn-primary">Log in</a>
   </div>
 </div>
  
@@ -92,6 +80,10 @@
         </select>
         <button class="btn btn-primary">Post</button>
       </div>
+    </div>
+
+    <div class="compose-box" id="compose-login-prompt">
+      Log in as faculty or board member of a club to create posts!
     </div>
  
     <input type="radio" name="hometabs" id="tab-posts" class="tab-input" checked>
@@ -363,8 +355,11 @@
   </aside>
  
 </div>
- 
-<script src="script.js"></script>
+
+<script src="auth.js">
+  
+</script>
+
+
 </body>
 </html>
- 
