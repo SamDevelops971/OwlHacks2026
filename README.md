@@ -39,18 +39,38 @@ TUgether is available online and can be accessed directly through our deployed w
 **[TUgether — Live Website](https://tu-flock.onrender.com/index.html)**
 
 No installation or setup is required to use TUgether.
+🚀 Future Development
 
+While TUgether currently provides a centralized place for students to discover Temple-related opportunities, we envision expanding it into a more connected platform across the Temple community.
 
-## 👥 Built By Students
+🔗 Temple University Integration
+
+A major goal for future development is to integrate TUgether with Temple University APIs and data sources. This would allow information such as events, organizations, faculty, and research opportunities to be updated more efficiently and reduce the need for users to manually enter information.
+
+📱 Social Media Integration
+
+We also plan to connect TUgether with social media platforms and other communication networks. Organizations could create a post on TUgether and, where supported by the platform's API and permissions, have that content shared or synchronized with their existing social media presence.
+
+This would allow student organizations to manage their announcements from one central location instead of having to recreate the same post across multiple platforms.
+
+💬 Student Engagement
+
+Future versions of TUgether could also introduce more ways for students and organizations to interact, including:
+
+* 💬 Comments and discussions on posts
+* 🔔 Notifications for events, announcements, and replies
+* ❤️ Reactions and engagement with organization posts
+* 📢 Personalized updates from clubs and organizations 
+* 👥 Organized calendar system between students, organizations, and faculty
+
+Our long-term vision is for TUgether to become a connected student community platform, bringing Temple's existing resources and student communities together in one place.
+
+### 🦉 TUgether
 
 TUgether was created by Temple University students during **OwlHacks 2026**.
 
 Our goal was to take the resources Temple already provides and turn them into an easier, more accessible experience for students.
 
----
-
-### 🦉 TUgether
-
-**Discover. Connect. Get Involved.**
-
-Built for Temple students, by Temple students.
+                                                      **Discover. Connect. Get Involved.**
+                                                      
+                                                  Built for Temple students, by Temple students.
