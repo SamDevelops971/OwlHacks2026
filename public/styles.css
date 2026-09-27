@@ -90,6 +90,11 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
   font-weight:700;
   font-size:22px;
   letter-spacing:-0.01em;
+
+  img {
+    width: 1.20em;
+    margin: 1px;
+  }
 }
 .brand span{
   color:var(--cherry);
