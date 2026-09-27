@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TuFlock</title>
+<title>TUgether</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,11 +11,11 @@
 <div class="topbar">
   <div class="brand-group">
   <img src="mascot.png" alt="TUFlock mascot" class="mascot">
-  <div class="brand">TU<span>Flock</span></div>
+  <div class="brand">TU<span>gether</span></div>
   </div>
-  <input class="search" type="text" placeholder="Search TuFlock">
+  <input class="search" type="text" placeholder="Search TUgether">
   <div class="topbar-actions">
-    <button class="btn btn-primary">Log in</button>
+    <a href="login.html" class="btn btn-primary">Log in</a>
   </div>
 </div>
  
@@ -83,6 +83,10 @@
         </select>
         <button class="btn btn-primary">Post</button>
       </div>
+    </div>
+
+    <div class="compose-box" id="compose-login-prompt">
+      Log in as faculty or board member of a club to create posts!
     </div>
  
     <input type="radio" name="hometabs" id="tab-posts" class="tab-input" checked>
@@ -354,7 +358,11 @@
   </aside>
  
 </div>
-  <script src="auth.js"></script>
+
+<script src="auth.js">
+  
+</script>
+
+
 </body>
 </html>
- 

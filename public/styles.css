@@ -12,7 +12,58 @@
   --cherry-soft: #F4E0E3;
   --down: #5B584F;
 }
- 
+
+
+
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.5);
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 1000;
+}
+
+.hidden {
+  display: none;
+  /*to hide the login popup*/
+}
+
+.popupContainer {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#TULogin {
+    font-family:'Fraunces',serif;
+    font-size: 15px;
+}
+
+#TULogin img {
+  width: 0.5rem;
+}
+
+#close-button {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+/*Hi*/
+
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
 body{
