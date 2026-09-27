@@ -57,11 +57,11 @@ This would allow student organizations to manage their announcements from one ce
 
 Future versions of TUgether could also introduce more ways for students and organizations to interact, including:
 
-💬 Comments and discussions on posts\n
-🔔 Notifications for events, announcements, and replies
-❤️ Reactions and engagement with organization posts
-📢 Personalized updates from clubs and organizations 
-👥 Organized calendar system between students, organizations, and faculty
+* 💬 Comments and discussions on posts
+* 🔔 Notifications for events, announcements, and replies
+* ❤️ Reactions and engagement with organization posts
+* 📢 Personalized updates from clubs and organizations 
+* 👥 Organized calendar system between students, organizations, and faculty
 
 Our long-term vision is for TUgether to become a connected student community platform, bringing Temple's existing resources and student communities together in one place.
 
