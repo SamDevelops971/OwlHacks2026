@@ -57,7 +57,7 @@ This would allow student organizations to manage their announcements from one ce
 
 Future versions of TUgether could also introduce more ways for students and organizations to interact, including:
 
-💬 Comments and discussions on posts
+💬 Comments and discussions on posts\n
 🔔 Notifications for events, announcements, and replies
 ❤️ Reactions and engagement with organization posts
 📢 Personalized updates from clubs and organizations 
