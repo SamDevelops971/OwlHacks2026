@@ -150,4 +150,24 @@ router.get('/me', requireAuth, async (req, res) => {
 
 module.exports = { router, requireAuth, requireRole };
 
-
+async function apiVotePost(postId, value) {
+  return apiPost(`/api/posts/${postId}/vote`, { value });
+}
+async function apiVoteComment(commentId, value) {
+  return apiPost(`/api/comments/${commentId}/vote`, { value });
+}
+async function apiGetPosts(clubId, sort) {
+  const params = new URLSearchParams();
+  if (clubId) params.set('club_id', clubId);
+  if (sort) params.set('sort', sort);
+  return apiGet(`/api/posts?${params.toString()}`);
+}
+async function apiGetPost(id) {
+  return apiGet(`/api/posts/${id}`);
+}
+async function apiGetComments(postId) {
+  return apiGet(`/api/posts/${postId}/comments`);
+}
+async function apiAddComment(postId, body) {
+  return apiPost(`/api/posts/${postId}/comments`, { body });
+}
