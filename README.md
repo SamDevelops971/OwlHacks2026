@@ -37,7 +37,7 @@ Instead of searching through multiple sources, students can use TUgether as a st
 Clone the repository:
 
 ```bash
-git clone https://github.com/[your-username]/OwlHacks2026.git
+git clone https://github.com/SamDevelops971/OwlHacks2026.git
 ```
 
 Navigate into the project:
