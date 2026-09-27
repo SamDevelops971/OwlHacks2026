@@ -334,7 +334,7 @@ h1,h2,h3{font-family:'Fraunces',serif;margin:0;}
  
 /* ---- Faculty-only compose box ---- */
 .compose-box{
-  background:var(--panel);border:1px solid var(--border);
+ background:var(--panel);border:1.5px solid var(--cherry);
   border-radius:10px;padding:16px;margin-bottom:18px;
 }
 .compose-visibility{
